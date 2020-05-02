@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<!-- **Rishikesh pasham-->  
+<html>
+<head>
+<meta charset="ISO-8859-1">
+
+    <title>GMU Survey Form</title>
+    <!-- style links -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
+   
+   <!-- Internal CSS -->
+    <style>
+    :root {
+  --slantedText: "Grand Hotel", cursive;
+  --primaryColor:  #006633;
+  --secondaryColor: #FFCC33;
+  --mainDark: #3a3e3b;
+  --mainWhite: #fff;
+  --mainGrey: #e5e5e5;
+  --mainTransition: all 0.3s ease-in-out;
+  --letterSpacing: 0.5rem;
+}
+    
+       #survey-title{
+    border: 5px solid #006633;
+    padding: 10px;
+    box-shadow: 5px 10px ;
+    text-align: center;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    background: yellow;
+    color: black;
+    font-weight: bold;
+  }
+  
+  	.footer-title{
+   text-transform: capitalize;
+   font-size: 2rem;
+   color: var(--mainWhite);
+ }
+ .footer-text{
+  font-size: 1.3rem;
+  color: var(--mainWhite);
+ }
+ .icons .fa{
+  color: var(--mainWhite);
+  transition: var(--mainTransition);
+ }
+
+ /*styling the logo part of footer*/
+ .footer-logo{
+   max-width: 100px;
+   max-height: 100px;
+   
+ }
+.footer{
+  padding: 1rem;
+  background: var(--primaryColor);
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  text-align: end;
+}
+/*styling icons part of footer*/
+.icons{
+  font-size: 3rem;
+  font-weight: bold;
+  color: var(--mainWhite);
+  text-align: center;
+}
+.icons .fa:hover{
+  color: var(--secondaryColor);
+  transform: translateY(-15px);
+}
+.contact{
+  text-align: start;
+}
+/* footer end*/
+body{
+background: linear-gradient(rgba(61, 235, 18, 0.5),rgba(240, 225, 14, 0.5));
+}
+      
+    </style>
+
+	  
+  </head>
+  <body>
+    
+  <div class="container">
+  <h2 id="survey-title">${stdbean.getStudentid()} Student Data</h2> 
+
+  <div id="DisplayHere"></div>
+  <div id="NewUser"></div>
+	<table border="1" width="100%" >
+  <div>
+    <div>
+     <!-- Form report values shown here --> 
+     <form class=" needs-validation" id="studForm" method="post" action="Mainservlet" autocomplete="on" >
+        <tr><td><p>
+          <label for="fname">First Name<label style="color: red">*</label></label></td>
+          <td><div class="input-group">
+            <input type="text" class="form-control" id="fname" name="fname" placeholder="First Name" value="${stdbean.getFname()}" readonly required autofocus>
+          </div>
+            <div class="invalid-feedback" style="width: 100%;">
+              Please enter First Name.
+            </div>
+            <div id="errorfName" style="color: red"></div>
+        </div></p></td></tr>
+		<tr><td><p>
+        
+          <label for="lname">Last Name<label style="color: red">*</label></label></div></td>
+          <td><div class="input-group">
+            <input type="text" class="form-control" id="lname" name="lname" placeholder="Last Name" value="${stdbean.getLname()}" readonly required >
+          </div>
+            <div class="invalid-feedback" style="width: 100%;">
+              Please enter Last Name.
+            </div>
+            <div id="errorlName" style="color: red"></div>
+        </div></p></td></tr>
+
+        <tr><td><p>
+          <label for="studentid">Student ID<label style="color: red">*</label></label></td>
+          <td><div class="input-group">
+            <input type="text" class="form-control" id="studentid" name="studentid" placeholder="G01122334" value="${stdbean.getStudentid()}" readonly  required>
+          </div>
+            <div class="invalid-feedback" style="width: 100%;">
+              Please enter Student ID.
+            </div>
+            <div id="errorStudentid" style="color: red"></div>
+        </div></p></td></tr>
+
+        
+
+        <tr><td><p>
+          <label for="email">Email<label style="color: red">*</label></label></td>
+          <td><input type="email" class="form-control" id="email" name="email" placeholder="you@example.com" value="${stdbean.getEmail()}" readonly required >
+          <div class="invalid-feedback">
+            Please enter a valid email address.
+          </div>
+          <div id="errorEmail" style="color: red"></div>
+        </div></p></td></tr>
+
+        <tr><td><p>
+          <label for="address">Street Address<label style="color: red">*</label></label></td>
+          <td><input type="text" class="form-control" id="streetaddress" name="streetaddress" placeholder="1234 Main St" value="${stdbean.getStreetaddress()}" readonly required></td>
+          <div id="errorStreet" style="color: red"></div>
+          <div class="invalid-feedback">
+            Please enter your street address.
+          </div>
+        </div></p></td></tr>
+
+        <tr><td><p>
+          <label for="city">City<label style="color: red">*</label></label></td>
+          <td><input type="text" class="form-control" id="city" name="city" placeholder="City" value="${stdbean.getCity()}" readonly required>
+          <div class="invalid-feedback" style="width: 100%;">
+            Please enter city.
+          </div>
+        </div></p></td></tr>
+
+        <tr><td><p>
+          
+            <label for="country">Country<label style="color: red">*</label></label></td>
+            <td><input type="text" class="form-control" id="country" name="country" placeholder="country" value="${stdbean.getCountry()}" readonly required>
+            <div class="invalid-feedback" style="width: 100%;">
+            Please enter country.
+          </div>
+          </div></p></td></tr>
+          <tr><td><p>
+            <label for="state">State<label style="color: red">*</label></label></td>
+            <td><input type="text" class="form-control" id="state" name="state" placeholder="state" value="${stdbean.getState()}" readonly required>
+            <div class="invalid-feedback" style="width: 100%;">
+            Please enter state.
+          </div>
+          </div></p></td></tr>
+          <tr><td><p>
+            <label for="zipcode">Zipcode<label style="color: red">*</label></label></td>
+            <td><input type="number" class="form-control" id="zipcode" name="zipcode" placeholder="zipcode" value="${stdbean.getZipcode()}" readonly required>
+            <div class="invalid-feedback" style="width: 100%;">
+            Please enter zipcode.
+          </div>
+          </div>
+        </p></td></tr>
+
+        <tr><td><p>
+          <label for="telephone">Telephone number</label></td>
+          <td><input type="number" class="form-control" id="telephone" name="telephone" placeholder="123-456-7890" value="${stdbean.getTelephone()}" readonly>
+        </div></p></td></tr>
+
+        <tr><td><p>
+          <label for="url">URL<span class="text-muted">(Optional)</span></label></td>
+          <td><input type="text" class="form-control" id="url" name="url" placeholder="http://domain.com" value="${stdbean.getUrl()}" readonly>
+        </div></p></td></tr>
+
+        <tr><td><p>
+          <label for="surveydate">Date of Survey</label></td>
+          <td><input type="date" class="form-control" id="surveydate" name="surveydate" placeholder="mm-dd-yyyy" value="${stdbean.getSurveydate()}" readonly>
+        </div></p></td></tr>
+        
+        <tr><td><p>
+        Please select high-school graduation date month</td>
+
+        <td>
+            <label for="graduationMonth"></label>
+            <input list="month" name="month" value="${stdbean.getMonth()}" readonly>
+              <datalist id="month">
+                <option value="January">
+                <option value="February">
+                <option value="March">
+                <option value="April">
+                <option value="May">
+                <option value="June">
+                <option value="July">
+                <option value="August">
+                <option value="September">
+                <option value="October">
+                <option value="Novomber">
+                <option value="December">
+              </datalist>
+          </p></td></tr>
+
+         <tr><td><p>
+            <label for="graduationYear">Year</label></td>
+            <td><input type="number"  min="1950" max="2020" step="1" id="graduationYear" name="graduationYear" placeholder="yyyy" value="${stdbean.getGraduationYear()}" readonly>
+          </p></td></tr>
+
+        <tr><td><p>
+        What did you like most about the campus</td>
+
+        <td><div class="custom-control custom-checkbox">
+          <input type="checkbox" class="custom-control-input" id="students" name="likemost" value="Students" ${Students}>
+          <label class="custom-control-label" for="students">Students</label>
+        </div>
+
+        <div class="custom-control custom-checkbox">
+          <input type="checkbox" class="custom-control-input" id="location" name="likemost" value="Location" ${Location}>
+          <label class="custom-control-label" for="location">Location</label>
+        </div>
+
+        <div class="custom-control custom-checkbox">
+          <input type="checkbox" class="custom-control-input" id="campus" name="likemost" value="Campus" ${Campus}>
+          <label class="custom-control-label" for="campus">Campus</label>
+        </div>
+
+        <div class="custom-control custom-checkbox">
+          <input type="checkbox" class="custom-control-input" id="atmosphere" name="likemost" value="Atmosphere" ${Atmosphere}>
+          <label class="custom-control-label" for="atmosphere">Atmosphere</label>
+        </div>
+
+        <div class="custom-control custom-checkbox">
+          <input type="checkbox" class="custom-control-input" id="dormrooms" name="likemost" value="Dormrooms" ${Dormrooms}>
+          <label class="custom-control-label" for="dormrooms">Dorm-rooms</label>
+        </div>
+
+        <div class="custom-control custom-checkbox">
+          <input type="checkbox" class="custom-control-input" id="sports" name="likemost" value="Sports" ${Sports}>
+          <label class="custom-control-label" for="sports">Sports</label>
+        </div></p></td></tr>
+
+        <tr><td><p>
+        How did you get interested in the university<label style="color: red">*</label></td>
+
+        <td>
+          <div class="custom-control custom-radio">
+            <input id="friends" name="interestInUniversity" type="radio" class="custom-control-input" value="Friends" ${stdbean.getInterestInUniversity() == 'Friends' ? 'checked' : ''}>
+            <label class="custom-control-label" for="friends">Friends</label>
+          </div>
+          <div class="custom-control custom-radio">
+            <input id="television" name="interestInUniversity" type="radio" class="custom-control-input" value="Television" ${stdbean.getInterestInUniversity() == 'Television' ? 'checked' : ''}>
+            <label class="custom-control-label" for="television">Television</label>
+          </div>
+          <div class="custom-control custom-radio">
+            <input id="internet" name="interestInUniversity" type="radio" class="custom-control-input" value="Internet" ${stdbean.getInterestInUniversity() == 'Internet' ? 'checked' : ''}>
+            <label class="custom-control-label" for="internet">Internet</label>
+          </div>
+          <div class="custom-control custom-radio">
+            <input id="others" name="interestInUniversity" type="radio" class="custom-control-input" value="Others" ${stdbean.getInterestInUniversity() == 'Others' ? 'checked' : ''}>
+            <label class="custom-control-label" for="others">Others</label>
+          </div>
+        </div></p></td></tr>
+
+        <tr><td><p>
+        Additional Comments</td>
+        <td><textarea id="comments" name="comments" rows="4" cols="100"readonly>${stdbean.getComments()}</textarea></p></td></tr>
+
+        <tr><td><p>
+        How likely are you to recommend this school to other prospective students</td>
+
+        <td><div class="mb-3">
+          <select id="recommend" name="recommend">
+            <option value="veryLikely" ${veryLikely}>Very Likely</option>
+            <option value="likely" ${likely}>Likely</option>
+            <option value="unlikely" ${unlikely}>Unlikely</option>
+          </select>
+        </div></p></td></tr>
+        
+        <tr><td><p>
+          <label for="data">Data</label></td>
+          <td><input type="text" class="form-control" id="data" name="data" placeholder="1,2,3,4,5,6,7,8,9,10" onblur="calcMax()" value="${stdbean.getData()}" readonly>
+          <div id="errorMsg" style="color: red"></div>
+        </div></p></td></tr>
+ 
+        <tr><td><p>
+        
+          <button  type="button"  onclick="FormReset()">Reset</button></td>
+          <td><button class="col-md-5 btn btn-primary btn-lg btn-block" type="submit" value="Submit" onclick="return validateFields();">Submit</button>
+        </p></td></tr>
+      </form>
+      </table>
+    </div>
+  </div>
+</div>
+<!--footer-->
+    <footer class="footer">
+      <div class="contact" id="contactdept">
+        <div class="footer-title">
+          <h3>Contact Us</h3>
+        </div>
+        <div class="footer-text">
+          <p>Phone: 703-993-1530</p>
+          <p>Email: csgrad@gmu.edu</p>
+        </div>
+      </div>
+
+      <div class="icons">
+        <a href="https://www.facebook.com/georgemason/"><i class="fa fa-facebook"></i></a>
+        <a href="https://twitter.com/GeorgeMasonU?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor"><i class="fa fa-twitter"></i></a>
+        <a href="https://www.instagram.com/georgemasonu/?hl=en"><i class="fa fa-instagram"></i></a>
+      </div>
+
+      <div class="footerlogo">
+        <a href="https://www2.gmu.edu/"><img src="logo.png" class="footer-logo" alt="logo"></a>
+      </div>
+    </footer>
+
+
+
+    <!-- javascript -->
+	<script type = "text/javascript">
+	  var now = new Date();s
+	  var hour = now.getHours(); 
+	  var name;
+	  var timeis;
+	  if ( hour < 12 )
+	  {
+	    timeis = "Good Morning ";
+	  }
+	  else
+	  {
+	    hour = hour - 12;
+	    if ( hour < 6 )
+	      timeis =  "Good Afternoon ";
+	    else
+	      timeis =  "Good Evening ";
+	  }
+	
+	  function deleteCookie() 
+	  { 
+	    console.log("Entered deleteCookie");
+	    setCookie('name', '', -1); 
+	    location.reload();
+	  }
+	
+	
+	  function setCookie(name, value, days) {
+	    var d = new Date;
+	    d.setTime(d.getTime() + 24*60*60*1000*days);
+	    document.cookie = name + "=" + value + ";path=/;expires=" + d.toGMTString();
+	  }
+	  function getCookie(name) {
+	    var v = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
+	    return v ? v[2] : '';
+	  }
+	
+	  temp = getCookie('name');
+	  console.log(temp);
+	  if(temp=='')
+	  {
+	    name = window.prompt( "Please enter your name", "" );
+	    setCookie('name',name,3);
+	  } 
+	  else
+	  {
+	    name = temp;
+	  }
+	  document.getElementById("DisplayHere").innerHTML = "<h5>"+timeis+name+", welcome to SWE642 Assignment"+"</h5>"
+	  document.getElementById("NewUser").innerHTML = "<a href='javascript:deleteCookie()'> Not "+name+"? Please click here</a>"
+	
+	
+	  function calcMax()
+	  {
+	    console.log("Entered calcMax");
+	    var inputString = document.getElementById( "data" ).value;
+	    var tokens = inputString.split( "," ); 
+	    var sum=0;
+	    if (tokens.length <10) 
+	    {
+	      errorMsg
+	      document.getElementById("errorMsg").innerHTML = "Please Enter atleast 10 numbers";
+	    }
+	    else
+	    {
+	      document.getElementById("errorMsg").innerHTML = "";
+	      var error = 0;
+	      for (var i=0; i<tokens.length; i++)
+	      {
+	          tokens[i] = parseInt(tokens[i], 10);
+	          sum+= tokens[i];
+	          if (tokens[i]>100 || tokens[i]<1) 
+	          {
+	            error = 1;
+	          }
+	      }
+	
+	      if (error==1) 
+	      {
+	        document.getElementById("errorMsg").innerHTML = "Please Enter numbers only between 1 to 100";
+	      }
+	      else
+	      {
+	        var max = Math.max.apply(Math,tokens);
+	        var avg = sum/tokens.length;
+	        document.getElementById("average").innerHTML = avg;
+	        document.getElementById("maximum").innerHTML = max;
+	      }
+	    }
+	  }
+	//Onclick Validate function
+	  function validateFields()
+	  {
+	    var fname = document.getElementById("fname").value;
+	    var reName = /^[A-Za-z]+$/;
+	    var alertMsg = "";
+	    if(!reName.test(fname))
+	    {
+	      document.getElementById("errorfName").innerHTML = 'Please enter a valid name';
+	      document.getElementById("fname").value = "";
+	      alertMsg += "Please enter a valid First Name\n";
+	    }
+	    else
+	    {
+	      document.getElementById("errorfName").innerHTML = '';
+	    }
+	    
+	    var lname = document.getElementById("lname").value;
+	    
+	    if(!reName.test(lname))
+	    {
+	      document.getElementById("errorlName").innerHTML = 'Please enter a valid name';
+	      document.getElementById("lname").value = "";
+	      alertMsg += "Please enter a valid Last Name\n";
+	    }
+	    else
+	    {
+	      document.getElementById("errorlName").innerHTML = '';
+	    }
+	    
+	    var studentid = document.getElementById("studentid").value;
+	    var restudentid = /^G[0-9]{8}$/;
+	    
+	    if(!restudentid.test(studentid))
+	    {
+	      document.getElementById("errorStudentid").innerHTML = 'Please enter a valid Student ID G01234567';
+	      document.getElementById("studentid").value = "";
+	      alertMsg += "Please enter a valid Student ID\n";
+	    }
+	    else
+	    {
+	      document.getElementById("errorStudentid").innerHTML = '';
+	    }
+	    
+	    var inputString = document.getElementById("data").value;
+	    var tokens = inputString.split(","); 
+	    if (tokens.length <10) 
+	    {
+	      document.getElementById("errorMsg").innerHTML = "Please Enter atleast 10 numbers";
+	      alertMsg += "Please enter atleast 10 digits in data field\n";
+	    }
+	    else
+    	{
+    		document.getElementById("errorMsg").innerHTML = "";
+    	}
+	    
+	    
+	    
+	
+	    var reStreet = /^[!*+=&^%$#<>()\[\]\\.,;:\s@"]+$/;
+	    var streetaddress = document.getElementById("streetaddress").value;
+	    if (streetaddress == '') 
+	    {
+	      document.getElementById("errorStreet").innerHTML = 'Please enter a streetaddress';
+	      document.getElementById("streetaddress").value = "";
+	      alertMsg += "Please enter a street address\n";
+	    }
+	    else
+	    {
+	      if(reStreet.test(streetaddress))
+	      {
+	        document.getElementById("errorStreet").innerHTML = 'Please enter a valid streetaddress';
+	        document.getElementById("streetaddress").value = "";
+	        alertMsg += "Please enter a valid street address\n";
+	      }
+	      else
+	      {
+	        document.getElementById("errorStreet").innerHTML = '';
+	      }
+	    }
+	
+	
+	    var reEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+	    var email = document.getElementById("email").value;
+	    if (email == '') 
+	    {
+	      document.getElementById("errorEmail").innerHTML = 'Email id cannot be empty';
+	      document.getElementById("email").value = "";
+	      alertMsg += "Please enter an email id\n";
+	
+	    }
+	    else
+	    {
+	      if(!reEmail.test(email))
+	      {
+	        document.getElementById("errorEmail").innerHTML = 'Please enter a valid Email id';
+	        document.getElementById("email").value = "";
+	        alertMsg += "Please enter a valid email id\n";
+	      }
+	      else
+	        document.getElementById("errorEmail").innerHTML = '';
+	    }
+	
+	    var checkedNum = document.querySelectorAll('input[type="checkbox"]:checked').length
+	    if (checkedNum < 2) 
+	    {
+	      //document.querySelectorAll('input[type="checkbox"]').checked = false;
+	      alertMsg += "Please check atleast two checkboxes\n";
+	    }
+	
+	    //var radioChecked = document.getElementsByName("interestInUniversity").checked
+	    var radioChecked = document.querySelector('input[name = "interestInUniversity"]:checked')
+	    if (radioChecked == null) 
+	    {
+	      alertMsg += "Please select a radio button";
+	    }
+	
+	    if (alertMsg!='') 
+	    {
+	      alert(alertMsg);
+	      return false;
+	    }
+	    else
+	    {
+	      return true;
+	    }
+	  }
+	  
+	
+	//Reset form function
+	  function FormReset()
+	  {
+	    document.getElementById("studForm").reset()
+	  }
+	
+	</script> 
+
+</body>
+</html>
